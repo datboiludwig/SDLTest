@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/ludwig/Documents/SDLTest/build",
+  "command": "/opt/homebrew/bin/aarch64-apple-darwin22-gcc-12  -I/Users/ludwig/Documents/SDLTest/inc -O3 -DNDEBUG -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -F/Library/Frameworks  -o CMakeFiles/SDLTest.dir/sources/main.c.o -c /Users/ludwig/Documents/SDLTest/sources/main.c",
+  "file": "/Users/ludwig/Documents/SDLTest/sources/main.c",
+  "output": "CMakeFiles/SDLTest.dir/sources/main.c.o"
+}
+]
