@@ -1,5 +1,0 @@
-/Users/ludwig/Documents/SDLTest/build/CMakeFiles/SDLTest.dir
-/Users/ludwig/Documents/SDLTest/build/CMakeFiles/package.dir
-/Users/ludwig/Documents/SDLTest/build/CMakeFiles/package_source.dir
-/Users/ludwig/Documents/SDLTest/build/CMakeFiles/edit_cache.dir
-/Users/ludwig/Documents/SDLTest/build/CMakeFiles/rebuild_cache.dir
