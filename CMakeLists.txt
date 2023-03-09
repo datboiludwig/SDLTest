@@ -22,19 +22,33 @@ else()
     add_executable(SDLTest MACOSX_BUNDLE ${SDLTest_SOURCES})
 endif()
 
-target_include_directories(SDLTest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/inc PRIVATE ${SDLTest_INCLUDE_DIRS})
+if(APPLE)
+    target_include_directories(SDLTest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL2.framework/Headers ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL2_image.framework/Headers ${SDLTest_INCLUDE_DIRS})
+else()
+    target_include_directories(SDLTest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/inc PRIVATE ${SDLTest_INCLUDE_DIRS})
+endif()
 
 if(APPLE)
     find_library(SDL SDL2)
-    target_link_libraries(SDLTest PRIVATE ${SDL})
+    find_library(SDL_image SDL2_image)
+    target_link_libraries(SDLTest PRIVATE ${SDL} ${SDL_image})
 else()
     target_link_libraries(SDLTest PRIVATE mingw32 SDL2main SDL2.dll SDL2_image.dll)
 endif()
 
 file(GLOB_RECURSE SDLTest_ASSETS CONFIGURE_DEPENDS "assets/*.png")
 
-add_custom_command(
-    TARGET SDLTest POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy
-    ${SDLTest_ASSETS}
-    ${CMAKE_CURRENT_BINARY_DIR}/assets)
+if(APPLE)
+    add_custom_command(TARGET SDLTest POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/SDLTest.app/Contents/MacOS/assets)
+    add_custom_command(
+        TARGET SDLTest POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+        ${SDLTest_ASSETS}
+        ${CMAKE_CURRENT_BINARY_DIR}/SDLTest.app/Contents/MacOS/assets)
+else()
+    add_custom_command(
+        TARGET SDLTest POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+        ${SDLTest_ASSETS}
+        ${CMAKE_CURRENT_BINARY_DIR}/assets)
+endif()

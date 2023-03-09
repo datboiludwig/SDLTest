@@ -1,7 +1,12 @@
 #include <stdio.h>
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#ifdef __APPLE__
+    #include <SDL.h>
+    #include <SDL_image.h>
+#else
+    #include <SDL2/SDL.h>
+    #include <SDL2/SDL_image.h>
+#endif
 
 #define true 1
 #define false 0
@@ -23,6 +28,8 @@ int main(int argc, char *argv[])
 
     SDL_Texture *mwep = IMG_LoadTexture(renderer, "assets/mwep.png");
     SDL_Texture *milly = IMG_LoadTexture(renderer, "assets/milly.png");
+
+    fprintf(stderr, IMG_GetError());
 
     cat whichCat = MWEP;
 
