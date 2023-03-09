@@ -28,5 +28,13 @@ if(APPLE)
     find_library(SDL SDL2)
     target_link_libraries(SDLTest PRIVATE ${SDL})
 else()
-    target_link_libraries(SDLTest PRIVATE mingw32 SDL2main SDL2.dll)
+    target_link_libraries(SDLTest PRIVATE mingw32 SDL2main SDL2.dll SDL2_image.dll)
 endif()
+
+file(GLOB_RECURSE SDLTest_ASSETS CONFIGURE_DEPENDS "assets/*.png")
+
+add_custom_command(
+    TARGET SDLTest POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+    ${SDLTest_ASSETS}
+    ${CMAKE_CURRENT_BINARY_DIR}/assets)
