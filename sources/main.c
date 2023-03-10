@@ -1,15 +1,8 @@
 #include <stdio.h>
+#include <stdbool.h>
 
-#ifdef __APPLE__
-    #include <SDL.h>
-    #include <SDL_image.h>
-#else
-    #include <SDL2/SDL.h>
-    #include <SDL2/SDL_image.h>
-#endif
-
-#define true 1
-#define false 0
+#include <SDL.h>
+#include <SDL_image.h>
 
 typedef enum
 {
@@ -29,18 +22,16 @@ int main(int argc, char *argv[])
     SDL_Texture *mwep = IMG_LoadTexture(renderer, "assets/mwep.png");
     SDL_Texture *milly = IMG_LoadTexture(renderer, "assets/milly.png");
 
-    fprintf(stderr, IMG_GetError());
-
     cat whichCat = MWEP;
 
-    unsigned char gameRunning = true;
+    bool gameRunning = true;
     SDL_Event event;
 
     while (gameRunning)
     {
         while (SDL_PollEvent(&event))
         {
-            if (event.type == SDL_QUIT)
+            if (event.type == SDL_QUIT)         
             {
                 gameRunning = false;
             }
