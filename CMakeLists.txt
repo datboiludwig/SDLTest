@@ -25,7 +25,7 @@ endif()
 if(APPLE)
     target_include_directories(SDLTest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL2.framework/Headers ${CMAKE_CURRENT_SOURCE_DIR}/lib/SDL2_image.framework/Headers ${SDLTest_INCLUDE_DIRS})
 else()
-    target_include_directories(SDLTest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/inc PRIVATE ${SDLTest_INCLUDE_DIRS})
+    target_include_directories(SDLTest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/inc/SDL2 PRIVATE ${SDLTest_INCLUDE_DIRS})
 endif()
 
 if(APPLE)
